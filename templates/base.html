@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/global.css') }}">
+    {% block head %} {% endblock %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <div class="navbar-left">
+          <h1 class="navbar-title">uType</h1>
+        </div>  
+        <div class="navbar-right">
+          <a href="" class="navbar-link">Link</a>
+          <a href="" class="navbar-link">Link</a>
+          <a href="" class="navbar-link">Link</a>
+        </div>
+      </nav>
+      {% block header %} {% endblock %}
+    </header> 
+    <div class="content">
+      {% block content %} {% endblock %}
+    </div>
+    {% block footer %} {% endblock %}
+  </body>
+</html>
+
+

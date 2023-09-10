@@ -1,0 +1,129 @@
+:root {
+  --primary: #e55d73;
+  --secondary: #fdfcfd;
+  --background: #193952;
+}
+
+.content {
+  user-select: none;
+}
+
+.top-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.timer {
+  color: var(--primary);
+  font-size: 32pt;
+  height: 1rem;
+  line-height: 1em;
+}
+
+.typing-area {
+  background: rgba(0,0,0,0.1);
+  height: 20rem;
+  width: 60rem;
+  padding: 2rem 3rem;
+  border-radius: 2rem;
+}
+.typing-text-container {
+  height: inherit;
+  width: inherit;
+  overflow: hidden;
+  position: relative;
+}
+.typing-text {
+  font-family: 'Source Code Pro', monospace;
+  margin: 0px;
+  padding: 0px;
+  color: var(--secondary);
+  opacity: 0.5;
+  font-size: 20pt;
+  line-height: 4rem;
+
+  height: inherit;
+  width: inherit;
+
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.overlay-input {
+  font-family: 'Source Code Pro', monospace;
+  font-size: 20pt;
+  line-height: 4rem;
+  margin: 0px;
+  padding: 0px;
+  resize: none;
+
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  background: none;
+  border: none;
+  outline: none;
+  color: var(--secondary);
+
+  height: inherit;
+  width: inherit;
+}
+.incorrect {
+  color: var(--primary);
+}
+.incorrect::selection {
+    background-color: none;
+    color: red;
+}
+.bottom-area {
+  display: flex;
+  width: 60rem;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  padding: 4rem 6rem 1rem 6rem;
+}
+.option-menu {
+  border: 1px solid var(--primary);
+  min-width: 12rem;
+  padding: 1rem 1rem;
+  border-radius: 1.5rem;
+}
+.option-menu h2 {
+  line-height: 0px;
+}
+.option-menu input {
+  display: none;
+}
+.option {
+  display: inline-flex;
+  align-items: center;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: start;
+  color: var(--secondary);
+}
+.radio {
+  height: 20px;
+  width: 20px;
+  border: 1px solid var(--secondary);
+  background: none;
+  border-radius: 5px;
+  margin-right: 0.5rem;
+  opacity: 0.5;
+}
+.option input:checked~.radio {
+  border-color: var(--primary);
+  background: var(--primary);
+  opacity: 1;
+}
+.option input:checked + .option-text {
+  color: var(--primary);
+  opacity: 1;
+}
+.option-text {
+  margin: auto 0px;
+  color: var(--secondary);
+  opacity: 0.5;
+}
