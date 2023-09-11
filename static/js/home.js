@@ -6,6 +6,7 @@ const timer = document.querySelector(".timer");
 let wlRadios = document.getElementsByName("wl");
 let difficultyRadios = document.getElementsByName("diff");
 let timeRadios = document.getElementsByName("time");
+let input = "";
 
 let scrollAmount = 0;
 const lineHeight = parseInt(getComputedStyle(typingText).lineHeight, 10);
@@ -67,6 +68,7 @@ async function fetchFile(file) {
 async function shuffleWords() {
   let diff = getRadioValue(difficultyRadios);
   let wl = getRadioValue(wlRadios);
+  input = "";
   inputText.value = "";
   started = false;
   clearInterval(timerVar);
@@ -90,7 +92,32 @@ async function shuffleWords() {
       break;
   }
   words = (await fetchFile(wl)).split("\n").slice(0,limit);
-  selected_words = selectNStrings(words,200);
+  selected_words = selectNStrings(words,100);
+  typingText.innerHTML = selected_words.join(" ");
+}
+
+async function regenWords() {
+  let diff = getRadioValue(difficultyRadios);
+  let wl = getRadioValue(wlRadios);
+  switch(diff) {
+    case "easy":
+      var limit = 200;
+      break;
+    case "normal":
+      var limit = 1000;
+      break;
+    case "hard":
+      var limit = 5000;
+      break;
+    case "harder":
+      var limit = 10000;
+      break;
+    default:
+      var limit = 10;
+      break;
+  }
+  words = (await fetchFile(wl)).split("\n").slice(0,limit);
+  selected_words = selectNStrings(words,100);
   typingText.innerHTML = selected_words.join(" ");
 }
 
@@ -118,6 +145,7 @@ function startTest() {
 
 function endTest() {
   let score = 0;
+  input += inputText.value;
   switch(getRadioValue(difficultyRadios)) {
     case "easy":
       var diff = 1;
@@ -134,16 +162,17 @@ function endTest() {
   }
   const data = {
     sessionId: sessionId,
-    words: inputText.value.split(' ').length,
-    chars: inputText.value.length,
-    wpm: (inputText.value.length/5) / (timeLimit/60),
-    kpm: inputText.value.length/(timeLimit/60),
+    words: input.split(' ').length,
+    chars: input.length,
+    wpm: (input.length/5) / (timeLimit/60),
+    kpm: input.length/(timeLimit/60),
     errors: errors,
     time: timeLimit,
     difficulty: diff,
-    accuracy: (1 - (errors/inputText.value.length))*100,
+    accuracy: (1 - (errors/input.length))*100,
+    errors: errors,
   };
-  let awl = inputText.value.split(' ').reduce((sum, n) => sum + n.length , 0) / data.words;
+  let awl = input.split(' ').reduce((sum, n) => sum + n.length , 0) / data.words;
   score += data.wpm * 0.2;
   score += data.kpm * 0.1;
   score *= (data.time/60) * 0.15 + 1;
@@ -180,20 +209,25 @@ inputText.addEventListener("input", () => {
 });
 
 inputText.addEventListener("cut", function (e) {
-    e.preventDefault();
+  e.preventDefault();
 });
 
 inputText.addEventListener("copy", function (e) {
-    e.preventDefault();
+  e.preventDefault();
 });
 
 inputText.addEventListener("paste", function (e) {
-    e.preventDefault();
+  e.preventDefault();
 });
 
 inputText.onselectstart = function() {
   return false;
 };
+inputText.addEventListener("scroll", () => {
+  input += inputText.value;
+  inputText.value = "";
+  regenWords();
+});
 
 addEvents(wlRadios);
 addEvents(difficultyRadios);
