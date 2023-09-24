@@ -1,4 +1,3 @@
-const sessionId = document.querySelector(".data").getAttribute('session-id');
 const typingText = document.querySelector(".typing-text");
 const inputText = document.querySelector(".overlay-input");
 const timer = document.querySelector(".timer");
@@ -161,7 +160,6 @@ function endTest() {
       break;
   }
   const data = {
-    sessionId: sessionId,
     words: input.split(' ').length,
     chars: input.length,
     wpm: (input.length/5) / (timeLimit/60),
@@ -170,7 +168,6 @@ function endTest() {
     time: timeLimit,
     difficulty: diff,
     accuracy: (1 - (errors/input.length))*100,
-    errors: errors,
   };
   let awl = input.split(' ').reduce((sum, n) => sum + n.length , 0) / data.words;
   score += data.wpm * 0.2;

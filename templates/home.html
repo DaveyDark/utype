@@ -2,7 +2,6 @@
 
 {% block head %}
   <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/home.css') }}">
-<div class="data" data-url="{{ url_for('static', filename='dict.txt') }}" session-id={{ session_id }}></div>
 {% endblock %}
 {% block content %}
   <div class="top-area">

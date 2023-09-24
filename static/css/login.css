@@ -1,0 +1,94 @@
+.container {
+  margin: 5rem 0rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  width: 80rem;
+}
+.login-img {
+  max-width: 30%;
+}
+.form-container {
+  width: 30rem;
+  text-align: center;
+  height: 25rem;
+  background: rgba(0, 0, 0, 0.1);
+  padding: 4rem 2rem;
+  border-radius: 1rem;
+}
+
+.form-container form {
+  height: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.form-options {
+  display: flex;
+  justify-content: center;
+}
+
+.form-options button {
+  background: none;
+  color: var(--secondary);
+  border-radius: 5rem;
+  border: 1px solid var(--secondary);
+  padding: 1rem 1rem;
+  margin: 0px -2px;
+  width: 8rem;
+  cursor: pointer;
+  font-size: 18pt;
+}
+
+#loginTab {
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border-right: none;
+}
+
+#registerTab {
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  border-left: none;
+}
+.form-options button.active {
+  background-color: var(--primary);
+  color: var(--secondary);
+  z-index: 2;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group input {
+  color: var(--secondary);
+  width: 80%;
+  max-width: 20rem;
+  padding: 1rem;
+  margin-top: 0.25rem;
+  border: 1px solid var(--secondary);
+  border-radius: 1rem;
+  background-color: transparent;
+  font-size: 14pt;
+}
+
+.form-group input:focus{
+  outline: none;
+}
+
+.form-actions {
+  text-align: center;
+}
+
+.form-actions button {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 5rem;
+  font-size: 14pt;
+  cursor: pointer;
+}
