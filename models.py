@@ -4,19 +4,23 @@ from datetime import datetime
 db = SQLAlchemy()
 
 class User(db.Model):
-    __tablename__ = "Users"
+    __tablename__ = "users"
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     username = db.Column(db.String(25), unique=True, nullable=False)
-    password = db.Column(db.String(25), unique=True, nullable=False)
+    password = db.Column(db.String(25), nullable=False)
     created = db.Column(db.DateTime, default=datetime.utcnow())
 
-    tests = db.relationship('Record', backref='user', lazy=True)
+    tests = db.relationship('Test', backref='user', lazy=True)
+
+    def __init__(self,username,password):
+        self.username = username
+        self.password = password
 
     def __repr__(self):
             return f'<User {self.username}>'
 
 class Test(db.Model):
-    __tablename__ = "Tests"
+    __tablename__ = "tests"
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     words = db.Column(db.Integer, nullable=False)

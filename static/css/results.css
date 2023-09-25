@@ -1,0 +1,64 @@
+.results-container {
+  background: rgba(0,0,0,0.1);
+  width: 60rem;
+  height: 40rem;
+  border-radius: 5rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.score-header {
+  font-size: 16pt;
+  margin: 0px;
+  margin-top: 6rem;
+  line-height: 0px;
+}
+
+.score-text {
+  margin: 0px;
+  font-size: 48pt;
+}
+
+.stat-header {
+  font-size: 12pt;
+  margin: 0px;
+  margin-top: 6rem;
+  line-height: 0px;
+}
+
+.stat-text {
+  margin: 0px;
+  font-size: 32pt;
+}
+
+.stats-container {
+  display: flex;
+  flex-direction: row;
+  width: inherit;
+  justify-content: space-evenly;
+}
+
+.stats-left {
+  flex-grow: 0.4;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.stat-table {
+  width: 100%;
+}
+
+.stat-table tr {
+  border: 2px solid white;
+}
+
+.stats-right {
+  flex-grow: 0.1;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}

@@ -3,6 +3,9 @@
 
 {% block head %}
   <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/login.css') }}">
+  <title>uType- Login</title>
+{% endblock %}
+{% block navbar %}
 {% endblock %}
 {% block content %}
 <div class="container">
@@ -13,25 +16,27 @@
       <button id="registerTab">Register</button>
     </div>
     <form id="loginForm">
+    <p id="loginInfo" class="info-text"></p>
       <div class="form-group">
-        <input type="text" placeholder="Username" required name="username">
+        <input id="username" type="text" placeholder="Username" required name="username">
       </div>
       <div class="form-group">
-        <input type="password" placeholder="Password" required name="password">
+        <input id="password" type="password" placeholder="Password" required name="password">
       </div>
       <div class="form-actions">
         <button type="submit">Login</button>
       </div>
     </form>
     <form id="registerForm" style="display: none;">
+      <p id="registerInfo" class="info-text"></p>
       <div class="form-group">
-        <input type="text" placeholder="Username" required name="username">
+        <input id="username2" type="text" placeholder="Username" required name="username">
       </div>
       <div class="form-group">
-        <input type="email" placeholder="Email" required name="email">
+        <input id="password2" type="password" placeholder="Password" required name="password">
       </div>
       <div class="form-group">
-        <input type="password" placeholder="Password" required name="password">
+        <input id="password-confirm" type="password" placeholder="Confirm Password" required name="password-confirm">
       </div>
       <div class="form-actions">
         <button type="submit">Register</button>

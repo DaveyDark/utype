@@ -1,8 +1,9 @@
-from flask import Flask, jsonify, redirect, render_template, request, session, url_for
+from flask import Flask, redirect, render_template, session, url_for
 from models import db
-from api import api
+from api import api, limiter
 
 app = Flask(__name__)
+limiter.init_app(app)
 app.secret_key = "utype_secret"
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///utype.db"
 
@@ -16,18 +17,25 @@ def index():
 
 @app.route("/login/")
 def login():
+    if "user_id" in session:
+        return redirect(url_for('home'))
     return render_template('login.html')
+
+@app.route("/logout/")
+def logout():
+    if 'user_id' in session:
+        del session['user_id']
+    return redirect(url_for('login'))
 
 @app.route("/home/")
 def home():
-    if "id" not in session:
+    if "user_id" not in session:
         return redirect(url_for('login'))
-    return render_template('home.html', session_id = session["id"])
+    return render_template('home.html')
 
-@app.route("/submit/", methods=["POST"])
-def submit():
-    data = request.json
-    print(data)
+@app.route("/results/")
+def results():
+    if "user_id" not in session:
+        return redirect(url_for('login'))
+    return render_template('results.html')
 
-    response = {'message': 'Data received successfully'}
-    return jsonify(response), 200

@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block head %}
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/results.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="results-container">
+  <div class="score-container">
+    <p class="score-header">Score</p>
+    <p class="score-text">127.4</p>
+  </div>
+  <div class="stats-container">
+    <div class="stats-left">
+      <table class="stat-table">
+        <tr>
+          <td>Characters Typed</td>
+          <td>159</td>
+        </tr>
+        <tr>
+          <td>Characters Typed</td>
+          <td>159</td>
+        </tr>
+        <tr>
+          <td>Characters Typed</td>
+          <td>159</td>
+        </tr>
+        <tr>
+          <td>Characters Typed</td>
+          <td>159</td>
+        </tr>
+      </table>
+    </div>
+    <div class="stats-right">
+      <div class="stat-container">
+        <p class="stat-header">WPM</p>
+        <p class="stat-text">62.8</p>
+      </div>
+      <div class="stat-container">
+        <p class="stat-header">Accuracy</p>
+        <p class="stat-text">98.4%</p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

@@ -185,8 +185,17 @@ function endTest() {
     },
     body: JSON.stringify(data),
   };
-  fetch("/submit", options);
-  // window.location = "/results";
+  fetch("/api/submit", options)
+    .then(res => {
+      if(res.status == 200) {
+        window.location = "/results";
+      } else {
+        console.error(`Error submitting test: ${res.body}`)
+      }
+    })
+    .catch(err => {
+      console.error(`Error: ${err}`)
+    });
 }
 
 inputText.addEventListener("input", () => {
