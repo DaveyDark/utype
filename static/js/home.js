@@ -162,18 +162,19 @@ function endTest() {
   const data = {
     words: input.split(' ').length,
     chars: input.length,
-    wpm: (input.length/5) / (timeLimit/60),
     kpm: input.length/(timeLimit/60),
     errors: errors,
     time: timeLimit,
-    difficulty: diff,
+    difficulty: getRadioValue(difficultyRadios),
+    wpm: (input.length/5) / (timeLimit/60),
     accuracy: (1 - (errors/input.length))*100,
   };
   let awl = input.split(' ').reduce((sum, n) => sum + n.length , 0) / data.words;
+  data.raw = (input.length/awl) / (timeLimit/60),
   score += data.wpm * 0.2;
   score += data.kpm * 0.1;
   score *= (data.time/60) * 0.15 + 1;
-  score *= data.difficulty * 0.1 + 1;
+  score *= diff * 0.1 + 1;
   score *= data.accuracy/100;
   score *= awl * 0.15 + 1;
   data.score = score;
@@ -188,9 +189,11 @@ function endTest() {
   fetch("/api/submit", options)
     .then(res => {
       if(res.status == 200) {
-        window.location = "/results";
+        res.json().then(data => {
+          window.location = `/results/${data.id}`;
+        })
       } else {
-        console.error(`Error submitting test: ${res.body}`)
+        console.error(`Error submitting test: ${res}`)
       }
     })
     .catch(err => {

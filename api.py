@@ -40,10 +40,9 @@ def submit():
     if not 'user_id' in session:
         return '', 401
     data = request.json
-    print(data)
-    test = Test(user_id=session['user_id'], words=data['words'], chars=data['chars'], errors=data['errors'], time=data['time'], wpm=data['wpm'], kpm=data['kpm'], difficulty=data['difficulty'])
+    if not data:
+        return '',400
+    test = Test(user_id=session['user_id'], words=data['words'], chars=data['chars'], errors=data['errors'], time=data['time'], wpm=data['wpm'], kpm=data['kpm'], difficulty=data['difficulty'], accuracy=data['accuracy'], score=data['score'], raw=data['raw'])
     db.session.add(test)
     db.session.commit()
-    print(data)
-
-    return '', 200
+    return {'id': test.id}, 200

@@ -2,43 +2,68 @@
 
 {% block head %}
   <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/results.css') }}">
+  <title>uType- Results</title>
 {% endblock %}
 
 {% block content %}
 <div class="results-container">
-  <div class="score-container">
-    <p class="score-header">Score</p>
-    <p class="score-text">127.4</p>
+  <div class="profile-container">
+    <div class="profile-left">
+      <p class="test-header">Test Results</p>
+    </div>
+    <div class="profile-right">
+      <div class="pfp-details-container">
+        <p class="pfp-name">{{ user.username }}</p>
+        <p class="pfp-time">{{ timestamp }}</p>
+      </div>
+      <img src="https://picsum.photos/200" class="pfp">
+    </div>
   </div>
   <div class="stats-container">
     <div class="stats-left">
       <table class="stat-table">
         <tr>
-          <td>Characters Typed</td>
-          <td>159</td>
+          <td class="stat-name">Characters Typed</td>
+          <td class="stat-val">{{ test.chars }}</td>
         </tr>
         <tr>
-          <td>Characters Typed</td>
-          <td>159</td>
+          <td class="stat-name">Words Typed</td>
+          <td class="stat-val">{{ test.words }}</td>
         </tr>
         <tr>
-          <td>Characters Typed</td>
-          <td>159</td>
+          <td class="stat-name">Errors Made</td>
+          <td class="stat-val">{{ test.errors }}</td>
         </tr>
         <tr>
-          <td>Characters Typed</td>
-          <td>159</td>
+          <td class="stat-name">Time Taken</td>
+          <td class="stat-val">{{ test.time }}s</td>
+        </tr>
+        <tr>
+          <td class="stat-name">Difficulty</td>
+          <td class="stat-val">{{ test.difficulty }}</td>
+        </tr>
+        <tr>
+          <td class="stat-name">Keystrokes per minute</td>
+          <td class="stat-val">{{ test.kpm | float | round(1) }}</td>
+        </tr>
+        <tr>
+          <td class="stat-name">Words per Minute(Raw)</td>
+          <td class="stat-val">{{ test.raw | float | round(1) }}</td>
         </tr>
       </table>
     </div>
     <div class="stats-right">
       <div class="stat-container">
+        <p class="stat-header">Score</p>
+        <p class="stat-text">{{ test.score | float | round(1) }}</p>
+      </div>
+      <div class="stat-container">
         <p class="stat-header">WPM</p>
-        <p class="stat-text">62.8</p>
+        <p class="stat-text">{{ test.wpm | float | round(1) }}</p>
       </div>
       <div class="stat-container">
         <p class="stat-header">Accuracy</p>
-        <p class="stat-text">98.4%</p>
+        <p class="stat-text">{{ test.accuracy | float | round(1) }}%</p>
       </div>
     </div>
   </div>

@@ -1,64 +1,114 @@
 .results-container {
   background: rgba(0,0,0,0.1);
-  width: 60rem;
-  height: 40rem;
+  width: 70rem;
   border-radius: 5rem;
+  padding-block: 4rem;
 
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
+  justify-content: center;
 }
 
-.score-header {
-  font-size: 16pt;
-  margin: 0px;
-  margin-top: 6rem;
-  line-height: 0px;
+.profile-container {
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  align-items: end;
+  justify-content: space-between;
+  margin-bottom: 2rem;
 }
 
-.score-text {
-  margin: 0px;
+.test-header {
   font-size: 48pt;
+  line-height: 0;
+  font-family: 'Oswald', sans-serif;
+  margin-left: 2rem;
+}
+
+.profile-right {
+  display: flex;
+  flex-direction: row;
+  text-align: right;
+}
+
+.pfp {
+  width: 7rem;
+  height: 7rem;
+  border-radius: 5rem;
+}
+
+.pfp-details-container {
+  margin-right: 1rem;
+  color: var(--secondary);
+}
+
+.pfp-name {
+  font-family: 'Oswald', sans-serif;
+  font-size: 24pt;
+  line-height: 0;
+}
+
+.pfp-time {
+  font-style: italic;
+  opacity: 0.5;
 }
 
 .stat-header {
   font-size: 12pt;
   margin: 0px;
-  margin-top: 6rem;
-  line-height: 0px;
+  line-height: 0;
 }
 
 .stat-text {
   margin: 0px;
   font-size: 32pt;
+  color: var(--secondary);
 }
 
 .stats-container {
   display: flex;
   flex-direction: row;
-  width: inherit;
+  width: 75%;
   justify-content: space-evenly;
+  background: rgba(0,0,0,0.1);
+  border-radius: 5rem;
+  padding: 2rem;
 }
 
 .stats-left {
-  flex-grow: 0.4;
+  flex: 0.5;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
 .stat-table {
   width: 100%;
+  border-collapse: collapse;
+  font-size: 14pt;
 }
 
 .stat-table tr {
-  border: 2px solid white;
+  height: 3rem;
+}
+
+.stat-table tr:not(:last-child) {
+  border-bottom: 1px solid var(--secondary);
+  border-collapse: collapse;
+}
+
+.stat-val {
+  text-transform: capitalize;
+  color: var(--secondary);
 }
 
 .stats-right {
-  flex-grow: 0.1;
+  flex: 0.1;
   display: flex;
   flex-direction: column;
-  justify-content: start;
+  justify-content: space-evenly;
+  padding-top: 1rem;
 }

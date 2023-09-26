@@ -29,7 +29,24 @@ class Test(db.Model):
     time = db.Column(db.Integer, nullable=False)
     wpm = db.Column(db.Float, nullable=False)
     kpm = db.Column(db.Float, nullable=False)
-    difficulty = db.Column(db.Float, nullable=False)
+    difficulty = db.Column(db.String(10), nullable=False)
+    accuracy = db.Column(db.Float, nullable=False)
+    score = db.Column(db.Float, nullable=False)
+    raw = db.Column(db.Float, nullable=False)
     timestamp = db.Column(db.DateTime, default=datetime.utcnow())
+
+    def __init__(self, user_id, words, chars, errors, time, wpm, kpm, difficulty, accuracy, score, raw):
+        self.user_id = user_id
+        self.words = words
+        self.chars = chars
+        self.kpm = kpm
+        self.wpm = wpm
+        self.errors = errors
+        self.time = time
+        self.difficulty = difficulty
+        self.accuracy = accuracy
+        self.score = score
+        self.raw = raw
+
     def __repr__(self):
         return f"<Record {self.id}>"
