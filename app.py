@@ -1,6 +1,6 @@
 from flask import Flask, redirect, render_template, session, url_for
-from models import Profile, db, Test, User
-from api import api, limiter
+from models import  Profile, db, Test, User
+from api import api, limiter, stats, rank
 
 app = Flask(__name__)
 limiter.init_app(app)
@@ -54,7 +54,22 @@ def profile(id):
     user = auth()
     if not user:
         return redirect(url_for('login'))
-    return render_template('profile.html', user=user, profile=user.profile)
+    profile = Profile.query.filter_by(user_id=id).first()
+    if not profile:
+        return '',404
+    tests = Test.query.filter_by(user_id=id).order_by(Test.timestamp.desc()).all()
+    for test in tests:
+        test.time= test.timestamp.strftime("%d %h %Y %I:%M%p")
+    stat = stats(id)[0]
+    return render_template('profile.html', user=user, profile=profile, tests=tests, stats=stat, rank=rank(id)[0], is_user=id==session['user_id'])
+
+@app.route('/profile/<int:id>/edit')
+def edit_profile(id):
+    user = auth()
+    #TODO
+    if not user:
+        return redirect(url_for('login'))
+    return ''
 
 @app.route("/results/<int:id>/")
 def results(id):
@@ -65,5 +80,8 @@ def results(id):
     if not test:
         return '',404
     timestamp = test.timestamp.strftime('%d/%m/%Y %I:%M%p')
-    return render_template('results.html', user=user, test=test, timestamp=timestamp)
+    tester = User.query.get(test.user_id)
+    if not tester:
+        return '',404
+    return render_template('results.html', user=user, test=test, timestamp=timestamp, username = tester.username)
 

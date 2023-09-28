@@ -5,6 +5,29 @@
   align-items: center;
   background: rgba(0,0,0,0.1);
   border-radius: 5rem;
+  position: relative;
+}
+
+.edit-container {
+  position: absolute;
+  display: flex;
+  width: 100%;
+  justify-content: right;
+}
+
+.edit-button {
+  margin-right: 2rem;
+  margin-top: 2rem;
+  font-size: 24pt;
+  line-height: 0;
+  border-radius: 50%;
+  border: none;
+  padding: 0rem;
+  height: 3rem;
+  width: 3rem;
+  background: var(--primary);
+  color: var(--background);
+  cursor: pointer;
 }
 
 .profile-header {
@@ -111,6 +134,18 @@
   margin: 0.5rem 0rem;
 
   color: var(--secondary);
+  cursor: pointer;
+}
+
+.history-row-header {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: 100%;
+  justify-content: space-evenly;
+  margin: 1rem 0rem 2rem 0rem;
+  line-height: 0;
+  border-bottom: 2px solid var(--primary);
 }
 
 .profile-details-right {
@@ -122,6 +157,7 @@
 #history-chart {
   width: 100%;
   height: 20rem;
+  color: white;
 }
 
 .profile-stats {

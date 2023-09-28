@@ -8,17 +8,23 @@
 
 {% block content %}
 <div class="profile-container">
+  <input id="user-id" hidden readonly value="{{profile.user.id}}">
+  {% if is_user %}
+  <div class="edit-container">
+    <button class="edit-button" onclick="window.location = '/profile/{{user.id}}/edit'"><i class="fa-solid fa-pen"></i></button>
+  </div>
+  {% endif %}
   <div class="profile-header">
     <div class="profile-header-left">
       <img src="https://picsum.photos/200" alt="profile picture" class="profile-picture">
       <div class="profile-header-left-text">
         <p class="profile-name">{{ profile.name }}</p>
-        <p class="profile-subtext profile-username">@{{ user.username }}</p>
+        <p class="profile-subtext profile-username">@{{ profile.user.username }}</p>
         <p class="profile-subtext">{{ profile.state }}, {{ profile.country }}</p>
       </div>
     </div>
     <div class="profile-header-right">
-      <p class="rank-text">#1</p>
+    <p class="rank-text">#{{rank.json}}</p>
     </div>
   </div>
   <div class="profile-details">
@@ -27,9 +33,14 @@
       <p class="profile-bio">{{ profile.bio }}</p>
       <h2 class="profile-block-header">Tests</h2>
       <div class="profile-history">
-        {% for test in user.tests %}
-        <div class="history-row">
-          <p class="history-row-timestamp">{{ test.timestamp }}</p>
+        <div class="history-row-header" >
+          <p class="history-row-timestamp">Test Timestamp<p>
+          <p class="history-row-score">Score</p>
+          <p class="history-row-wpm">WPM</p>
+        </div>
+        {% for test in tests %}
+        <div class="history-row" onclick="window.location='/results/{{test.id}}'">
+          <p class="history-row-timestamp">{{ test.time }}</p>
           <p class="history-row-score">{{ test.score | float | round(1) }}</p>
           <p class="history-row-wpm">{{ test.wpm | float | round(1) }}</p>
         </div>
@@ -43,27 +54,27 @@
       <div class="profile-stats">
         <div class="profile-stat-block">
           <p class="stat-name">Average WPM</p>
-          <p class="stat-val">72</p>
+          <p class="stat-val">{{ stats.json['average_wpm'] | float | round(1) }}</p>
         </div>
         <div class="profile-stat-block">
           <p class="stat-name">Average Score</p>
-          <p class="stat-val">109.2</p>
+          <p class="stat-val">{{ stats.json['average_score'] | float | round(1) }}</p>
         </div>
         <div class="profile-stat-block">
           <p class="stat-name">Average Accuracy</p>
-          <p class="stat-val">95%</p>
+          <p class="stat-val">{{ stats.json['average_accuracy'] | float | round(1) }}%</p>
         </div>
         <div class="profile-stat-block">
-          <p class="stat-name">Highest WPM</p>
-          <p class="stat-val">76.1</p>
+          <p class="stat-name">Best WPM</p>
+          <p class="stat-val">{{ stats.json['highest_wpm'] | float | round(1) }}</p>
         </div>
         <div class="profile-stat-block">
-          <p class="stat-name">Highest Score</p>
-          <p class="stat-val">131.4</p>
+          <p class="stat-name">Best Score</p>
+          <p class="stat-val">{{ stats.json['highest_score'] | float | round(1) }}</p>
         </div>
         <div class="profile-stat-block">
           <p class="stat-name">Tests Given</p>
-          <p class="stat-val">7</p>
+          <p class="stat-val">{{ stats.json['tests'] }}</p>
         </div>
       </div>
     </div>
