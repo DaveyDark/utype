@@ -9,15 +9,17 @@ class User(db.Model):
     username = db.Column(db.String(25), unique=True, nullable=False)
     password = db.Column(db.String(25), nullable=False)
     created = db.Column(db.DateTime, default=datetime.utcnow())
+    
+    profile = db.relationship('Profile', backref='user', uselist=False)
+    
+    tests = db.relationship('Test', backref='user')
 
-    tests = db.relationship('Test', backref='user', lazy=True)
-
-    def __init__(self,username,password):
+    def __init__(self, username, password):
         self.username = username
         self.password = password
 
     def __repr__(self):
-            return f'<User {self.username}>'
+        return f'<User {self.username}>'
 
 class Test(db.Model):
     __tablename__ = "tests"
@@ -50,3 +52,19 @@ class Test(db.Model):
 
     def __repr__(self):
         return f"<Record {self.id}>"
+
+class Profile(db.Model):
+    __tablename__ = "profiles"
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    name = db.Column(db.String(50))
+    bio = db.Column(db.String(255))
+    country = db.Column(db.String(25))
+    state = db.Column(db.String(25))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), unique=True, nullable=False)
+
+    def __init__(self, user_id):
+        self.name = ""
+        self.bio = ""
+        self.country = "India"
+        self.state = "Delhi"
+        self.user_id = user_id

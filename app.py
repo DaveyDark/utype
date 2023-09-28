@@ -1,6 +1,5 @@
 from flask import Flask, redirect, render_template, session, url_for
-from models import db, Test, User
-from datetime import datetime
+from models import Profile, db, Test, User
 from api import api, limiter
 
 app = Flask(__name__)
@@ -43,7 +42,21 @@ def home():
         return redirect(url_for('login'))
     return render_template('home.html')
 
-@app.route("/results/<int:id>")
+@app.route("/profile/")
+def user_profile():
+    user = auth()
+    if not user:
+        return redirect(url_for('login'))
+    return redirect(url_for('profile', id=user.id))
+
+@app.route('/profile/<int:id>/')
+def profile(id):
+    user = auth()
+    if not user:
+        return redirect(url_for('login'))
+    return render_template('profile.html', user=user, profile=user.profile)
+
+@app.route("/results/<int:id>/")
 def results(id):
     user = auth()
     if not user:

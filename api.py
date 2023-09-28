@@ -1,7 +1,7 @@
 from flask import Blueprint, request, jsonify, session
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
-from models import db, User, Test
+from models import db, User, Test, Profile
 import bcrypt
 
 api = Blueprint('api', __name__)
@@ -33,6 +33,10 @@ def register():
     user = User(username=request.form['username'], password=hashed_password)
     db.session.add(user)
     db.session.commit()
+    profile = Profile(user.id)
+    db.session.add(profile)
+    db.session.commit()
+    session['user_id'] = user.id
     return 'User Created',201
 
 @api.route("/submit/", methods=["POST"])

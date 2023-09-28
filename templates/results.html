@@ -2,7 +2,7 @@
 
 {% block head %}
   <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/results.css') }}">
-  <title>uType- Results</title>
+  <title>uType - Results</title>
 {% endblock %}
 
 {% block content %}
@@ -16,7 +16,7 @@
         <p class="pfp-name">{{ user.username }}</p>
         <p class="pfp-time">{{ timestamp }}</p>
       </div>
-      <img src="https://picsum.photos/200" class="pfp">
+      <img src="https://picsum.photos/200" alt="profile-picture" class="pfp">
     </div>
   </div>
   <div class="stats-container">
