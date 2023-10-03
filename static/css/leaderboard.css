@@ -1,0 +1,51 @@
+.container {
+  width: 70rem;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 5rem;
+  padding: 2rem 4rem;
+}
+
+.container h1 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 36pt;
+}
+
+.leaderboard-container {
+  display: flex;
+  gap: 5rem;
+}
+
+.leaderboard-table {
+  flex: 1;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 3rem;
+  padding: 2rem;
+  text-align: center;
+}
+
+.leaderboard-table th {
+  border-bottom: 1px solid var(--primary);
+}
+
+.img-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.leaderboard-row {
+  color: var(--secondary);
+  height: 5rem;
+  cursor: pointer;
+}
+
+.leaderboard-row img {
+  height: 2.5rem;
+  width: 2.5rem;
+}
+
+.leaderboard-graphs {
+  flex: 1;
+}

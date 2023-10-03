@@ -35,7 +35,7 @@ class Test(db.Model):
     accuracy = db.Column(db.Float, nullable=False)
     score = db.Column(db.Float, nullable=False)
     raw = db.Column(db.Float, nullable=False)
-    timestamp = db.Column(db.DateTime, default=datetime.utcnow())
+    timestamp = db.Column(db.DateTime)
 
     def __init__(self, user_id, words, chars, errors, time, wpm, kpm, difficulty, accuracy, score, raw):
         self.user_id = user_id
@@ -49,6 +49,7 @@ class Test(db.Model):
         self.accuracy = accuracy
         self.score = score
         self.raw = raw
+        self.timestamp =datetime.now()
 
     def __repr__(self):
         return f"<Record {self.id}>"

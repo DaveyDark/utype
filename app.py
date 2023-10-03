@@ -1,6 +1,6 @@
 from flask import Flask, redirect, render_template, session, url_for
 from models import  Profile, db, Test, User
-from api import api, limiter, stats, rank
+from api import api, limiter, ranks, scores, stats, rank
 import os
 
 app = Flask(__name__)
@@ -47,7 +47,18 @@ def home():
 def leaderboard():
     if not auth():
         return redirect(url_for('login'))
-    return render_template('leaderboard.html')
+    rankings = ranks()[0].json
+    users = User.query.all()
+    if not rankings:
+        return '',500
+    scorings = scores()[0].json
+    if not scorings:
+        return '',500
+    for user in users:
+        user.rank = rankings[str(user.id)]
+        user.score = scorings[str(user.id)]
+    users.sort(key=lambda usr: usr.rank)
+    return render_template('leaderboard.html', users=users)
 
 @app.route("/profile/")
 def user_profile():
