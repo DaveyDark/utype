@@ -1,6 +1,7 @@
 from flask import Flask, redirect, render_template, session, url_for
 from models import  Profile, db, Test, User
 from api import api, limiter, stats, rank
+import os
 
 app = Flask(__name__)
 limiter.init_app(app)
@@ -42,6 +43,12 @@ def home():
         return redirect(url_for('login'))
     return render_template('home.html')
 
+@app.route("/leaderboard/")
+def leaderboard():
+    if not auth():
+        return redirect(url_for('login'))
+    return render_template('leaderboard.html')
+
 @app.route("/profile/")
 def user_profile():
     user = auth()
@@ -66,10 +73,14 @@ def profile(id):
 @app.route('/profile/<int:id>/edit')
 def edit_profile(id):
     user = auth()
-    #TODO
+    directory = './static/img/avatars/'
+    pics = [f for f in os.listdir(directory) if os.path.isfile(os.path.join(directory, f))]
     if not user:
         return redirect(url_for('login'))
-    return ''
+    profile = Profile.query.filter_by(user_id=id).first()
+    if not profile:
+        return '',404
+    return render_template('edit_profile.html', pics=pics, profile=profile)
 
 @app.route("/results/<int:id>/")
 def results(id):

@@ -59,12 +59,12 @@ class Profile(db.Model):
     name = db.Column(db.String(50))
     bio = db.Column(db.String(255))
     country = db.Column(db.String(25))
-    state = db.Column(db.String(25))
+    pfp = db.Column(db.String(50))
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), unique=True, nullable=False)
 
     def __init__(self, user_id):
         self.name = ""
         self.bio = ""
-        self.country = "India"
-        self.state = "Delhi"
+        self.country = "India🇮🇳"
+        self.pfp = "/static/img/avatars/01.png"
         self.user_id = user_id

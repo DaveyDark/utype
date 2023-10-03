@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block head %}
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/leaderboard.css') }}">
+  <title>uType - Leaderboard</title>
+{% endblock %}
+
+{% block content %}
+<div class="leaderboard-container">
+  <div class="leaderboard-table">
+  </div>
+  <div class="leaderboard-graphs">
+  </div>
+</div>
+{% endblock %}

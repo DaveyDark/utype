@@ -1,0 +1,82 @@
+.container {
+  width: 80rem;
+  background: rgba(0,0,0,0.1);
+  border-radius: 5rem;
+  padding: 2rem 3rem;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.pfp {
+  flex: 0.4;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 0.1rem;
+}
+
+.pfp-option {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+}
+
+.pfp-form {
+  flex: 0.6;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  gap: 3rem;
+  margin: 0rem 1rem;
+}
+
+.bio-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.details-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.pfp-form textarea, .pfp-form input, .pfp-form select {
+  resize: none;
+  background: none;
+  border-radius: 1rem;
+  min-height: 2rem;
+  border: 1px solid var(--primary);
+  color: var(--secondary);
+  font-size: 14pt;
+  padding: 0.5rem 1rem;
+}
+
+.pfp-form textarea:focus, .pfp-form input:focus, .pfp-form select:focus {
+  outline: none;
+}
+
+.pfp-form textarea {
+  width: 90%;
+  height: 10rem;
+}
+
+.pfp-form label {
+  font-size: 16pt;
+}
+
+.pfp-form select {
+  color: var(--secondary);
+  width: 50%;
+}
+
+#submit {
+  background: var(--primary);
+  margin-top: 2rem;
+}
+
+.pfp-option-selected {
+  border: 5px solid var(--secondary);
+}

@@ -2,7 +2,7 @@
 
 {% block head %}
   <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/profile.css') }}">
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"> </script> 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"> </script> 
   <title>uType - Profile({{user.username}})</title>
 {% endblock %}
 
@@ -16,11 +16,11 @@
   {% endif %}
   <div class="profile-header">
     <div class="profile-header-left">
-      <img src="https://picsum.photos/200" alt="profile picture" class="profile-picture">
+      <img src="{{ profile.pfp }}" alt="profile picture" class="profile-picture">
       <div class="profile-header-left-text">
         <p class="profile-name">{{ profile.name }}</p>
         <p class="profile-subtext profile-username">@{{ profile.user.username }}</p>
-        <p class="profile-subtext">{{ profile.state }}, {{ profile.country }}</p>
+        <p class="profile-subtext">{{ profile.country }}</p>
       </div>
     </div>
     <div class="profile-header-right">

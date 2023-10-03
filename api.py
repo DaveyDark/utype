@@ -130,3 +130,19 @@ def rank(id):
         if rank[0] == id:
             break
     return jsonify(i), 200
+
+@api.route("/update-profile", methods=["POST"])
+def update_profile():
+    required_keys = {'id', 'name', 'bio', 'country', 'pfp'}
+
+    if not required_keys.issubset(request.form.keys()):
+        return 'Bad Request', 400
+    profile = Profile.query.get(request.form['id'])
+    if not profile:
+        return 'Invalid ID', 400
+    profile.name = request.form['name']
+    profile.bio = request.form['bio']
+    profile.country = request.form['country']
+    profile.pfp = request.form['pfp']
+    db.session.commit()
+    return '',200
