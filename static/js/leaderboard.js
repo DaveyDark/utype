@@ -16,13 +16,15 @@ fetch(`/api/scores-graph`).then(res => {
     };
 
     // Define the configuration options for the chart
-    var options = {
-      scales: {
-        y: {
-          beginAtZero: true,
+    var options =  {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
         }
-      },
-    };
+    }
 
     new Chart("leaderboard-chart", {
       type: "bar",
