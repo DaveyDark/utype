@@ -58,6 +58,7 @@ def leaderboard():
         user.rank = rankings[str(user.id)]
         user.score = scorings[str(user.id)]
     users.sort(key=lambda usr: usr.rank)
+    users = users[:25]
     return render_template('leaderboard.html', users=users)
 
 @app.route("/profile/")
@@ -88,10 +89,19 @@ def edit_profile(id):
     pics = [f for f in os.listdir(directory) if os.path.isfile(os.path.join(directory, f))]
     if not user:
         return redirect(url_for('login'))
+    if user.id != id:
+        return redirect(url_for('home'))
     profile = Profile.query.filter_by(user_id=id).first()
     if not profile:
         return '',404
     return render_template('edit_profile.html', pics=pics, profile=profile)
+
+@app.route('/profile/edit')
+def edit_profile_redirect():
+    user = auth()
+    if not user:
+        return redirect(url_for('login'))
+    return redirect(url_for('edit_profile', id=user.id))
 
 @app.route("/results/<int:id>/")
 def results(id):

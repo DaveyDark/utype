@@ -111,7 +111,10 @@ def graph(id):
     for test in latest_tests:
         timestamp = test.timestamp.strftime("%Y/%m/%d") 
         tests.append({'wpm': round(test.wpm,1), 'score': round(test.score,1), 'accuracy': round(test.accuracy,1), 'timestamp': timestamp})
-    return jsonify(tests),200
+    sorted_data = sorted(tests, key=lambda x: x["timestamp"])
+
+    latest_n_entries = sorted_data[-10:]
+    return jsonify(latest_n_entries),200
 
 @api.route("/scores/")
 def scores():
@@ -137,7 +140,9 @@ def scores_graph():
         entry['score'] = round(scorings[str(user.id)],2)
         entry['username'] = user.username
         data.append(entry)
-    return jsonify(data),200
+    sorted_data = sorted(data, key=lambda x: x["score"], reverse=True)
+    top_entries = sorted_data[:10]
+    return jsonify(top_entries),200
 
 @api.route("/ranks/", methods=["GET"])
 def ranks():

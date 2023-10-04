@@ -54,7 +54,7 @@ registerForm.addEventListener('submit', (e) => {
   }).then(res => {
       if(res.status == 201) {
         registerInfo.innerHTML = "Registration Successful"
-        window.location = "/profile";
+        window.location = "/profile/edit";
       } else if(res.status == 409) {
         registerInfo.innerHTML = "Username already taken"
       }
