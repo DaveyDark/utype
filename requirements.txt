@@ -1,6 +1,6 @@
 bcrypt
 blinker
-certifi7.22
+certifi
 charset-normalizer
 click
 Deprecated4
@@ -9,7 +9,7 @@ Flask-Limiter
 Flask-SQLAlchemy
 greenlet
 gunicorn0
-idna==3.4
+idna
 importlib-resources
 itsdangerous
 Jinja2
@@ -18,7 +18,7 @@ markdown-it-py
 MarkupSafe
 mdurl
 ordered-set
-packaging==23.1
+packaging
 Pygments1
 rich3
 SQLAlchemy1
