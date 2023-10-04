@@ -39,11 +39,7 @@
   color: var(--secondary);
   height: 5rem;
   cursor: pointer;
-  transition: color 0.2s ease-in-out;
-}
-
-.leaderboard-row:hover {
-  color: var(--primary)
+  transition: transform 0.2s ease-in-out;
 }
 
 .leaderboard-row img {
@@ -53,4 +49,8 @@
 
 .leaderboard-graphs {
   flex: 1;
+}
+
+.leaderboard-row:hover {
+  transform: scale(1.05);
 }

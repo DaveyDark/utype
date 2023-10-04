@@ -4,12 +4,25 @@
   align-items: center;
   justify-content: space-between;
   flex-direction: row;
+  gap: 10%;
   width: 80rem;
 }
-.login-img {
-  max-width: 30%;
+.info-container {
+  flex: 3;
+  text-align: right;
+  width: 100%;
+}
+.info-container h1 {
+  font-size: 56pt;
+  font-family: 'Oswald', sans-serif;
+  font-style: italic;
+}
+.info-container p {
+  font-size: 18pt;
+  color: var(--secondary);
 }
 .form-container {
+  flex: 2;
   width: 30rem;
   text-align: center;
   height: 25rem;
