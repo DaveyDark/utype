@@ -126,20 +126,20 @@ function advanceText() {
 }
 
 function tick() {
-  time -= 1;
+  time -= 0.1;
   if(time <= 0) {
     clearInterval(timerVar);
     endTest();
   }
-  timer.innerHTML = time;
+  timer.textContent = time.toFixed(1);
 }
 
 function startTest() {
-  timeLimit = getRadioValue(timeRadios);
+  timeLimit = Number(getRadioValue(timeRadios));
   started = true;
   time = timeLimit;
-  timer.innerHTML = time;
-  timerVar = setInterval(tick,1000);
+  timer.textContent = time.toFixed(1);
+  timerVar = setInterval(tick,100);
 }
 
 function endTest() {

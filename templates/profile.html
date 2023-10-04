@@ -54,27 +54,27 @@
       <div class="profile-stats">
         <div class="profile-stat-block">
           <p class="stat-name">Average WPM</p>
-          <p class="stat-val">{{ stats.json['average_wpm'] | float | round(1) }}</p>
+          <p class="stat-val counter" val={{ stats.json['average_wpm'] | float | round(1) }}></p>
         </div>
         <div class="profile-stat-block">
           <p class="stat-name">Average Score</p>
-          <p class="stat-val">{{ stats.json['average_score'] | float | round(1) }}</p>
+          <p class="stat-val counter" val={{ stats.json['average_score'] | float | round(1) }}></p>
         </div>
         <div class="profile-stat-block">
           <p class="stat-name">Average Accuracy</p>
-          <p class="stat-val">{{ stats.json['average_accuracy'] | float | round(1) }}%</p>
+          <p class="stat-val counter" val={{ stats.json['average_accuracy'] | float | round(1) }}>%</p>
         </div>
         <div class="profile-stat-block">
           <p class="stat-name">Best WPM</p>
-          <p class="stat-val">{{ stats.json['highest_wpm'] | float | round(1) }}</p>
+          <p class="stat-val counter" val={{ stats.json['highest_wpm'] | float | round(1) }}></p>
         </div>
         <div class="profile-stat-block">
           <p class="stat-name">Best Score</p>
-          <p class="stat-val">{{ stats.json['highest_score'] | float | round(1) }}</p>
+          <p class="stat-val counter" val={{ stats.json['highest_score'] | float | round(1) }}></p>
         </div>
         <div class="profile-stat-block">
           <p class="stat-name">Tests Given</p>
-          <p class="stat-val">{{ stats.json['tests'] }}</p>
+          <p class="stat-val counter" val={{ stats.json['tests'] }}></p>
         </div>
       </div>
     </div>
@@ -84,4 +84,5 @@
 
 {% block footer %}
   <script src="{{ url_for('static',filename='js/profile.js') }}"></script>
+  <script src="{{ url_for('static',filename='js/counter.js') }}"></script>
 {% endblock %}

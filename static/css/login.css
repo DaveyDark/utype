@@ -40,6 +40,12 @@
   width: 8rem;
   cursor: pointer;
   font-size: 18pt;
+
+  transition: font-size 0.2s ease-in-out;
+}
+
+.form-options button:hover {
+  font-size: 19pt;
 }
 
 #loginTab {
@@ -70,13 +76,17 @@
   padding: 1rem;
   margin-top: 0.25rem;
   border: 1px solid var(--secondary);
-  border-radius: 1rem;
+  border-radius: 2rem;
   background-color: transparent;
   font-size: 14pt;
+
+  transition: border-radius 0.3s ease-in-out;
 }
 
 .form-group input:focus{
   outline: none;
+  border-radius: 1rem;
+  border-width: 2px;
 }
 
 .form-actions {

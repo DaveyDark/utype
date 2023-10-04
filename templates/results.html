@@ -16,7 +16,7 @@
         <p class="pfp-name">{{ username }}</p>
         <p class="pfp-time">{{ timestamp }}</p>
       </div>
-      <img src="https://picsum.photos/200" alt="profile-picture" class="pfp">
+      <img src="{{ pfp }}" alt="profile-picture" class="pfp">
     </div>
   </div>
   <div class="stats-container">
@@ -55,15 +55,15 @@
     <div class="stats-right">
       <div class="stat-container">
         <p class="stat-header">Score</p>
-        <p class="stat-text">{{ test.score | float | round(1) }}</p>
+        <p class="stat-text counter" val={{ test.score | float | round(1) }}></p>
       </div>
       <div class="stat-container">
         <p class="stat-header">WPM</p>
-        <p class="stat-text">{{ test.wpm | float | round(1) }}</p>
+        <p class="stat-text counter" val={{ test.wpm | float | round(1) }}></p>
       </div>
       <div class="stat-container">
         <p class="stat-header">Accuracy</p>
-        <p class="stat-text">{{ test.accuracy | float | round(1) }}%</p>
+        <p class="stat-text counter" val={{ test.accuracy | float | round(1) }}>%</p>
       </div>
     </div>
   </div>
@@ -71,4 +71,5 @@
 {% endblock %}
 
 {% block footer %}
+  <script src="{{ url_for('static',filename='js/counter.js') }}"></script>
 {% endblock %}

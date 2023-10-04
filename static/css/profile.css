@@ -28,6 +28,11 @@
   background: var(--primary);
   color: var(--background);
   cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.edit-button:hover {
+  transform: scale(1.1);
 }
 
 .profile-header {
@@ -135,6 +140,11 @@
 
   color: var(--secondary);
   cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.history-row:hover {
+  transform: scale(1.05);
 }
 
 .history-row-header {

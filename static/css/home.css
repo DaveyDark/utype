@@ -115,6 +115,9 @@
   margin-right: 0.5rem;
   opacity: 0.5;
 }
+.radio:hover {
+  opacity: 0.8;
+}
 .option input:checked~.radio {
   border-color: var(--primary);
   background: var(--primary);

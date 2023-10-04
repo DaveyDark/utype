@@ -39,6 +39,11 @@
   color: var(--secondary);
   height: 5rem;
   cursor: pointer;
+  transition: color 0.2s ease-in-out;
+}
+
+.leaderboard-row:hover {
+  color: var(--primary)
 }
 
 .leaderboard-row img {

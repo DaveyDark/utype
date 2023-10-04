@@ -60,6 +60,7 @@ header {
   font-weight: 600;
   justify-self: center;
   font-size: 16pt;
+  transition: color 0.2s ease-in-out;
 }
 .navbar-link:hover {
   text-decoration: none;

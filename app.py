@@ -105,5 +105,5 @@ def results(id):
     tester = User.query.get(test.user_id)
     if not tester:
         return '',404
-    return render_template('results.html', user=user, test=test, timestamp=timestamp, username = tester.username)
+    return render_template('results.html', user=user, test=test, timestamp=timestamp, username = tester.username, pfp=tester.profile.pfp)
 
