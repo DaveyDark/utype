@@ -183,6 +183,7 @@ function endTest() {
     method: "POST",
     headers: {
       'Content-Type': 'application/json',
+      'Cookie': document.cookie,
     },
     body: JSON.stringify(data),
   };

@@ -11,6 +11,14 @@ limiter = Limiter(
     key_func=lambda: get_remote_address(),
 )
 
+def auth():
+    if "user_id" not in session:
+        return None
+    user = User.query.get(session['user_id'])
+    if not user:
+        return None
+    return user
+
 @api.route('/login/', methods=['POST'])
 @limiter.limit('5 per minute')
 def login():
@@ -42,7 +50,7 @@ def register():
 
 @api.route("/submit/", methods=["POST"])
 def submit():
-    if not 'user_id' in session:
+    if not auth():
         return '', 401
     data = request.json
     if not data:
@@ -168,10 +176,15 @@ def rank(id):
 
 @api.route("/update-profile", methods=["POST"])
 def update_profile():
+    user = auth()
+    if not user:
+        return '', 401
     required_keys = {'id', 'name', 'bio', 'country', 'pfp'}
 
     if not required_keys.issubset(request.form.keys()):
         return 'Bad Request', 400
+    if user.id != int(request.form['id']):
+        return '', 401
     profile = Profile.query.get(request.form['id'])
     if not profile:
         return 'Invalid ID', 400

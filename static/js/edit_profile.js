@@ -21,6 +21,9 @@ form.addEventListener('submit', e => {
   e.preventDefault()
   fetch('/api/update-profile', {
     method: 'POST',
+    headers: {
+      'Cookie': document.cookie
+    },
     body: new FormData(form),
   }).then(res => {
       if(res.status == 200) {
